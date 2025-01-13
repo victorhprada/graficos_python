@@ -53,6 +53,7 @@ fig = px.box(df,
 
 fig.show()
 
+# Mostra como fatores como estado civil, profissão e imóvel próprio estão relacionados e contribuem para o limite de crédito
 fig = px.parallel_categories(df,
                              dimensions=['Estado_Civil', 'Profissão', 'Imovel_Proprio'],
                              color='Limite_Credito',
