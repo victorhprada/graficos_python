@@ -44,3 +44,29 @@ fig = px.bar(salario_por_profissao, x='Salário', y='Profissão', orientation='h
              labels={'Salário': 'Salário Médio', 'Profissão': 'Profissão'})
 
 fig.show()
+
+# Alterando cor e tamanho
+fig = px.bar(salario_por_profissao, x='Salário', y='Profissão', orientation='h',
+             title='Salários por Profissão',
+             labels={'Salário': 'Salário Médio', 'Profissão': 'Profissão'},
+             color='Salário', # Especificando a cor baseada nos valores de salário
+             width=800) # definindo a largura do gráfico em pixels
+
+fig.show()
+
+# Agrupamos os dados do DataFrame por profissão e estado civil, e calculando a média do salário para cada profissão e estado civil
+salario_profissao_estado_civil = df.groupby(['Profissão', 'estado_civil'])['Salário'].mean().reset_index()
+
+# Criando o gráfico de treemap com os salários por profissão, usando cores para representar os estados civis
+fig = px.treemap(salario_profissao_estado_civil,
+                 path=['Profissão', 'estado_civil'],
+                 values='Salário',
+                 title='Salários por Profissão e Estados Civis',
+                 color='estado_civil')
+
+fig.show()
+
+# Boxplot de idade
+fig = px.box(df, y='Idade', title='Boxplot de Idade')
+
+fig.show()
